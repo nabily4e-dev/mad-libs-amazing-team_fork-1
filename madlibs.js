@@ -28,7 +28,12 @@
  */
 function parseStory(rawStory) {
   // Your code here.
-  return {}; // This line is currently wrong :)
+  let wildcards = rawStory.split(/([\s,.])/gm).filter(word => /\S/.test(word)); // to remove leadin and trai
+  wildchars.forEach(word => {
+
+  });
+  return storyWordsArr;
+  // return {}; // This line is currently wrong :)
 }
 
 /**
