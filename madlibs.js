@@ -53,8 +53,24 @@ function parseStory(rawStory) {
   // return {}; // This line is currently wrong :)
 }
 
-function showStory(){
+function showStory(processedStory){
+  // Variables
+  const allStory = '';
+
+  // Grap DOM elements
+  const edit = document.querySelector(".madLibsEdit");
+  const preview = document.querySelector(".madLibsPreview");
   
+  processedStory.forEach((wordObj, index) => {
+    if(wordObj.hasOwnProperty('pos')){
+      const input = document.createElement('input');
+      input.type = "text";
+      input.id = `blank-${index}`;
+      edit.appendChild(input);
+    }
+    edit.innerHTML += wordObj;
+  });
+  console.log(edit);
 }
 
 /**
@@ -64,5 +80,5 @@ function showStory(){
  * You'll want to use the results of parseStory() to display the story on the page.
  */
 getRawStory().then(parseStory).then((processedStory) => {
-  console.log(processedStory);
+  showStory(processedStory);
 });
