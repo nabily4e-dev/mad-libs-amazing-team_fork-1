@@ -26,6 +26,12 @@
  * There are multiple ways to do this, but you may want to use regular expressions.
  * Please go through this lesson: https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/regular-expressions/
  */
+
+// matching delimiter
+const delimiterDict = {
+  dot: '.',
+  comma: ',',
+}
 function parseStory(rawStory) {
   // Your code here.
 
@@ -58,20 +64,26 @@ function showStory(processedStory){
   const allStory = '';
 
   // Grap DOM elements
-  const edit = document.querySelector(".madLibsEdit");
-  const preview = document.querySelector(".madLibsPreview");
+  const editDOM = document.querySelector(".madLibsEdit");
+  const previewDOM = document.querySelector(".madLibsPreview");
   
   processedStory.forEach((wordObj, index) => {
     if(wordObj.hasOwnProperty('pos')){
       const input = document.createElement('input');
       input.type = "text";
       input.id = `blank-${index}`;
-      edit.appendChild(input);
-      edit.innerHTML += ` `;
-      preview.innerHTML += `_____________`;
+      input.placeholder = `${wordObj.pos}`;
+      editDOM.appendChild(input);
+      
+      //! ONLY example to test preview
+      input.value = "Abrar";
+      
+      // if(!(wordObj.pos == delimiterDict[dot] && !wordObj.pos == delimiterDict[comma])) 
+      editDOM.innerHTML += ` `;
+      previewDOM.innerHTML += `${input.value} ` ?? ` (${wordObj.pos}) `;
     }else{
-      edit.innerHTML += ` ${wordObj.word} `;
-      preview.innerHTML += ` ${wordObj.word} `;
+      editDOM.innerHTML += ` ${wordObj.word} `;
+      previewDOM.innerHTML += ` ${wordObj.word} `;
     }
   });
   
