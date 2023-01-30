@@ -28,8 +28,29 @@
  */
 function parseStory(rawStory) {
   // Your code here.
-  let wildcards = rawStory.split(/([\s,.])/gm).filter(word => /\S/.test(word)); // to remove leading and trailing space
 
+  // matching pos
+
+  const posDict = {
+    '[n]': 'noun',
+    '[v]': 'verb', 
+    '[a]': 'adjective',
+  }
+  const parsedStory = [];
+  const splittedWords = rawStory.split(/([\s,.])/gm)
+                              .filter(word => /\S/.test(word)); // to remove leading and trailing space
+  splittedWords.forEach(elem => {
+    const posType = elem.match(/\[.*\]/g);
+    const wordObj = {};
+    if(posType != null){
+      wordObj.word = elem.replace(posType,'');
+      wordObj.pos = posDict[posType];
+    }
+    else 
+      wordObj.word = elem; 
+    parsedStory.push(wordObj);
+  });
+  return parsedStory
   // return {}; // This line is currently wrong :)
 }
 
