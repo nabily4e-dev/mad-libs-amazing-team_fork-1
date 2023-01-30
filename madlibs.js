@@ -32,6 +32,10 @@ const delimiterDict = {
   dot: '.',
   comma: ',',
 }
+
+function isDelimiter(char){
+  return char === delimiterDict["dot"] || char === delimiterDict["comma"];
+}
 function parseStory(rawStory) {
   // Your code here.
 
@@ -77,8 +81,7 @@ function showStory(processedStory){
       
       //! ONLY example to test preview
       input.value = "Abrar";
-      
-      // if(!(wordObj.pos == delimiterDict[dot] && !wordObj.pos == delimiterDict[comma])) 
+      // if(!isDelimiter(wordObj.word))
       editDOM.innerHTML += ` `;
       previewDOM.innerHTML += `${input.value} ` ?? ` (${wordObj.pos}) `;
     }else{
