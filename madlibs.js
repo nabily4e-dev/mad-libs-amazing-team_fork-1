@@ -30,7 +30,6 @@ function parseStory(rawStory) {
   // Your code here.
 
   // matching pos
-
   const posDict = {
     '[n]': 'noun',
     '[v]': 'verb', 
