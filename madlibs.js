@@ -68,10 +68,13 @@ function showStory(processedStory){
       input.id = `blank-${index}`;
       edit.appendChild(input);
       edit.innerHTML += ` `;
-    }else  
+      preview.innerHTML += `_____________`;
+    }else{
       edit.innerHTML += ` ${wordObj.word} `;
+      preview.innerHTML += ` ${wordObj.word} `;
+    }
   });
-  return edit;
+  
 }
 
 /**
