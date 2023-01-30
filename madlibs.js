@@ -28,7 +28,7 @@
  */
 function parseStory(rawStory) {
   // Your code here.
-  let wildcards = rawStory.split(/([\s,.])/gm).filter(word => /\S/.test(word)); // to remove leadin and trai
+  let wildcards = rawStory.split(/([\s,.])/gm).filter(word => /\S/.test(word)); // to remove leading and trailing space
 
   // return {}; // This line is currently wrong :)
 }
