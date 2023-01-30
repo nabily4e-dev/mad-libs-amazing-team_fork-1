@@ -53,6 +53,10 @@ function parseStory(rawStory) {
   // return {}; // This line is currently wrong :)
 }
 
+function showStory(){
+  
+}
+
 /**
  * All your other JavaScript code goes here, inside the function. Don't worry about
  * the `then` and `async` syntax for now.
