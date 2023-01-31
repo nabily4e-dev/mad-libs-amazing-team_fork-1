@@ -91,7 +91,18 @@ function showStory(processedStory){
       previewDOM.innerHTML += ` ${wordObj.word} `;
     }
   });
-  
+}
+
+function liveUpdate(){
+  //! After parsing, we have list of blanks for edit and preview
+  const editInputs = document.querySelectorAll('.madLibsEdit input');
+  const prevInputs = document.querySelectorAll('.madLibsPreview input');
+
+  editInputs.forEach((input, index) => {
+    input.addEventListener('input', (e) => {
+      prevInputs[index].value = e.target.value;
+    })
+  });
 }
 
 /**
@@ -102,4 +113,5 @@ function showStory(processedStory){
  */
 getRawStory().then(parseStory).then((processedStory) => {
   showStory(processedStory);
+  liveUpdate();
 });
