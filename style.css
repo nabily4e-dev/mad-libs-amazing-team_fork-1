@@ -86,6 +86,11 @@
 
 
  }
+ .read-only-input {
+    border: none;
+    outline: 0;
+ }
+ 
  p{
     font-weight: bold;
     font-style: italic;
@@ -111,7 +116,4 @@
         font-size: medium;
     }
  }    
- 
 
-
- 
