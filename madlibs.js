@@ -91,13 +91,14 @@ function showStory(processedStory){
 
 function liveUpdate(){
   //!! After parsing, we have list of inputs, list of blanks
-  const allInputs = document.querySelectorAll('input');
+  const allInputs = document.querySelectorAll('.madLibsEdit input');
   allInputs.forEach(input => {
     input.addEventListener('input', () => {
-      previewDOM.innerHTML += `${input.value} ` ?? ` (${wordObj.pos}) `;
+      // previewDOM.innerHTML += `${input.value} ` ?? ` (${wordObj.pos}) `;
     })
   });
 }
+
 /**
  * All your other JavaScript code goes here, inside the function. Don't worry about
  * the `then` and `async` syntax for now.
