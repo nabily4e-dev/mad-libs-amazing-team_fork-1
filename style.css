@@ -1,3 +1,8 @@
 /**
  * Your CSS goes here.
  */
+
+.read-only-input {
+    border: none;
+    outline: 0;
+}
