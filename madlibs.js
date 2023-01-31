@@ -94,11 +94,13 @@ function showStory(processedStory){
 }
 
 function liveUpdate(){
-  //!! After parsing, we have list of inputs, list of blanks
-  const allInputs = document.querySelectorAll('.madLibsEdit input');
-  allInputs.forEach(input => {
-    input.addEventListener('input', () => {
-      // previewDOM.innerHTML += `${input.value} ` ?? ` (${wordObj.pos}) `;
+  //! After parsing, we have list of blanks for edit and preview
+  const editInputs = document.querySelectorAll('.madLibsEdit input');
+  const prevInputs = document.querySelectorAll('.madLibsPreview input');
+
+  editInputs.forEach((input, index) => {
+    input.addEventListener('input', (e) => {
+      prevInputs[index].value = e.target.value;
     })
   });
 }
