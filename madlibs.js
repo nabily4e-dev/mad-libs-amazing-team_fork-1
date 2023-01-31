@@ -78,9 +78,7 @@ function showStory(processedStory){
       input.id = `blank-${index}`;
       input.placeholder = `${wordObj.pos}`;
       editDOM.appendChild(input);
-      
-      //! ONLY example to test preview
-      input.value = "Abrar";
+
       // if(!isDelimiter(wordObj.word))
       editDOM.innerHTML += ` `;
       previewDOM.innerHTML += `${input.value} ` ?? ` (${wordObj.pos}) `;
@@ -89,8 +87,8 @@ function showStory(processedStory){
       previewDOM.innerHTML += ` ${wordObj.word} `;
     }
   });
-  
 }
+
 
 /**
  * All your other JavaScript code goes here, inside the function. Don't worry about
@@ -100,4 +98,5 @@ function showStory(processedStory){
  */
 getRawStory().then(parseStory).then((processedStory) => {
   showStory(processedStory);
+
 });
