@@ -51,12 +51,11 @@ function parseStory(rawStory) {
   splittedWords.forEach(elem => {
     const posType = elem.match(/\[.*\]/g);
     const wordObj = {};
-    if(posType != null){
+    if(posType){
       wordObj.word = elem.replace(posType,'');
       wordObj.pos = posDict[posType];
     }
-    else 
-      wordObj.word = elem; 
+    else wordObj.word = elem; 
     parsedStory.push(wordObj);
   });
   return parsedStory
