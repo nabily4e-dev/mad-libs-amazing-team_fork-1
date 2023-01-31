@@ -71,6 +71,7 @@ function showStory(processedStory){
       //? Input For Edit
       const blankEdit = document.createElement('input');
       blankEdit.type = "text";
+      blankEdit.maxLength = "20";
       blankEdit.placeholder = `${wordObj.pos}`;
       editDOM.appendChild(blankEdit);
 
