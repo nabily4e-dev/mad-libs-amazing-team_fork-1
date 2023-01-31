@@ -64,26 +64,28 @@ function parseStory(rawStory) {
 }
 
 function showStory(processedStory){
-  // Variables
-  const allStory = '';
-
   // Grap DOM elements
   const editDOM = document.querySelector(".madLibsEdit");
   const previewDOM = document.querySelector(".madLibsPreview");
   
   processedStory.forEach((wordObj, index) => {
     if(wordObj.hasOwnProperty('pos')){
-      const input = document.createElement('input');
-      input.type = "text";
-      input.id = `blank-${index}`;
-      input.placeholder = `${wordObj.pos}`;
-      editDOM.appendChild(input);
-      
-      //! ONLY example to test preview
-      input.value = "Abrar";
-      // if(!isDelimiter(wordObj.word))
+      //? Input For Edit
+      const inputEdit = document.createElement('input');
+      inputEdit.type = "text";
+      inputEdit.id = `blank-${index}`;
+      inputEdit.placeholder = `${wordObj.pos}`;
+      editDOM.appendChild(inputEdit);
+
+      //? Input For Preview
+      const inputPrev = document.createElement('input');
+      inputPrev.type = "text";
+      inputPrev.classList.add("read-only-input");
+      inputPrev.readOnly = "true";
+      previewDOM.appendChild(inputPrev);
+
       editDOM.innerHTML += ` `;
-      previewDOM.innerHTML += `${input.value} ` ?? ` (${wordObj.pos}) `;
+      previewDOM.innerHTML += ` `;
     }else{
       editDOM.innerHTML += ` ${wordObj.word} `;
       previewDOM.innerHTML += ` ${wordObj.word} `;
