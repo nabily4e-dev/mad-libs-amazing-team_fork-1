@@ -70,18 +70,17 @@ function showStory(processedStory){
   processedStory.forEach((wordObj, index) => {
     if(wordObj.hasOwnProperty('pos')){
       //? Input For Edit
-      const inputEdit = document.createElement('input');
-      inputEdit.type = "text";
-      inputEdit.id = `blank-${index}`;
-      inputEdit.placeholder = `${wordObj.pos}`;
-      editDOM.appendChild(inputEdit);
+      const blankEdit = document.createElement('input');
+      blankEdit.type = "text";
+      blankEdit.id = `blank-${index}`;
+      blankEdit.placeholder = `${wordObj.pos}`;
+      editDOM.appendChild(blankEdit);
 
       //? Input For Preview
-      const inputPrev = document.createElement('input');
-      inputPrev.type = "text";
-      inputPrev.classList.add("read-only-input");
-      inputPrev.readOnly = "true";
-      previewDOM.appendChild(inputPrev);
+      const blankPrev = document.createElement('span');
+      blankPrev.innerHTML = `[${wordObj.pos}]`;
+      blankPrev.classList.add("prev-blank");
+      previewDOM.appendChild(blankPrev);
 
       editDOM.innerHTML += ` `;
       previewDOM.innerHTML += ` `;
@@ -94,12 +93,12 @@ function showStory(processedStory){
 
 function liveUpdate(){
   //! After parsing, we have list of blanks for edit and preview
-  const editInputs = document.querySelectorAll('.madLibsEdit input');
-  const prevInputs = document.querySelectorAll('.madLibsPreview input');
+  const editBlanks = document.querySelectorAll('.madLibsEdit input');
+  const prevBlanks = document.querySelectorAll('.madLibsPreview span');
 
-  editInputs.forEach((input, index) => {
+  editBlanks.forEach((input, index) => {
     input.addEventListener('input', (e) => {
-      prevInputs[index].value = e.target.value;
+      prevBlanks[index].innerHTML = e.target.value;
     })
   });
 }
