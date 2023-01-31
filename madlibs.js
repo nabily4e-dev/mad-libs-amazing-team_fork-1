@@ -33,7 +33,7 @@ const delimiterDict = {
   comma: ',',
 }
 
-function isDelimiter(char){
+function isDelimiter(char) {
   return char === delimiterDict["dot"] || char === delimiterDict["comma"];
 }
 function parseStory(rawStory) {
@@ -42,54 +42,54 @@ function parseStory(rawStory) {
   // matching pos
   const posDict = {
     '[n]': 'noun',
-    '[v]': 'verb', 
+    '[v]': 'verb',
     '[a]': 'adjective',
   }
   const parsedStory = [];
   const splittedWords = rawStory.split(/([\s,.])/gm)
-                              .filter(word => /\S/.test(word)); // to remove leading and trailing space
+    .filter(word => /\S/.test(word)); // to remove leading and trailing space
   splittedWords.forEach(elem => {
     const posType = elem.match(/\[.*\]/g);
     const wordObj = {};
-    if(posType != null){
-      wordObj.word = elem.replace(posType,'');
+    if (posType != null) {
+      wordObj.word = elem.replace(posType, '');
       wordObj.pos = posDict[posType];
     }
-    else 
-      wordObj.word = elem; 
+    else
+      wordObj.word = elem;
     parsedStory.push(wordObj);
   });
   return parsedStory
   // return {}; // This line is currently wrong :)
 }
 
-function showStory(processedStory){
+function showStory(processedStory) {
   // Variables
   const allStory = '';
 
-  // Grap DOM elements
+  // Grape DOM elements
   const editDOM = document.querySelector(".madLibsEdit");
   const previewDOM = document.querySelector(".madLibsPreview");
-  
+
   processedStory.forEach((wordObj, index) => {
-    if(wordObj.hasOwnProperty('pos')){
+    if (wordObj.hasOwnProperty('pos')) {
       const input = document.createElement('input');
       input.type = "text";
       input.id = `blank-${index}`;
       input.placeholder = `${wordObj.pos}`;
       editDOM.appendChild(input);
-      
+
       //! ONLY example to test preview
       input.value = "Abrar";
       // if(!isDelimiter(wordObj.word))
       editDOM.innerHTML += ` `;
       previewDOM.innerHTML += `${input.value} ` ?? ` (${wordObj.pos}) `;
-    }else{
+    } else {
       editDOM.innerHTML += ` ${wordObj.word} `;
       previewDOM.innerHTML += ` ${wordObj.word} `;
     }
   });
-  
+
 }
 
 /**
@@ -100,4 +100,17 @@ function showStory(processedStory){
  */
 getRawStory().then(parseStory).then((processedStory) => {
   showStory(processedStory);
+});
+
+// Start of hotkeys code
+document.addEventListener("keyup", function (event) {
+  if (event.keyCode === 13) {
+    const fields = document.querySelectorAll(".textfield");
+    let currentField = event.target;
+    let currentIndex = Array.from(fields).indexOf(currentField);
+    let nextField = fields[currentIndex + 1];
+    if (nextField) {
+      nextField.focus();
+    }
+  }
 });
