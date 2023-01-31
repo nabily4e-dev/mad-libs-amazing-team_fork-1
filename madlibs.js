@@ -83,7 +83,6 @@ function showStory(processedStory){
       previewDOM.appendChild(blankPrev);
 
       editDOM.innerHTML += ` `;
-      previewDOM.innerHTML += ` `;
     }else{
       editDOM.innerHTML += ` ${wordObj.word} `;
       previewDOM.innerHTML += ` ${wordObj.word} `;
