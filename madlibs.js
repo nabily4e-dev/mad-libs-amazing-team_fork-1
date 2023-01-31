@@ -46,8 +46,7 @@ function parseStory(rawStory) {
     '[a]': 'adjective',
   }
   const parsedStory = [];
-  const splittedWords = rawStory.split(/([\s,.])/gm)
-                              .filter(word => /\S/.test(word)); // to remove leading and trailing space
+  const splittedWords = rawStory.split(/([\s,.])/gm);
   splittedWords.forEach(elem => {
     const posType = elem.match(/\[[nva]\]/g);
     const wordObj = {};
@@ -72,7 +71,6 @@ function showStory(processedStory){
       //? Input For Edit
       const blankEdit = document.createElement('input');
       blankEdit.type = "text";
-      blankEdit.id = `blank-${index}`;
       blankEdit.placeholder = `${wordObj.pos}`;
       editDOM.appendChild(blankEdit);
 
@@ -81,11 +79,10 @@ function showStory(processedStory){
       blankPrev.innerHTML = `[${wordObj.pos}]`;
       blankPrev.classList.add("prev-blank");
       previewDOM.appendChild(blankPrev);
-
-      editDOM.innerHTML += ` `;
+      
     }else{
-      editDOM.innerHTML += ` ${wordObj.word} `;
-      previewDOM.innerHTML += ` ${wordObj.word} `;
+      editDOM.innerHTML += `${wordObj.word}`;
+      previewDOM.innerHTML += `${wordObj.word}`;
     }
   });
 }
@@ -96,7 +93,7 @@ function liveUpdate(){
   const prevBlanks = document.querySelectorAll('.madLibsPreview span');
 
   editBlanks.forEach((input, index) => {
-    input.addEventListener('input', (e) => {
+    input.addEventListener('input', e => {
       prevBlanks[index].innerHTML = e.target.value;
     })
   });
