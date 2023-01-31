@@ -89,7 +89,15 @@ function showStory(processedStory){
   });
 }
 
-
+function liveUpdate(){
+  //!! After parsing, we have list of inputs, list of blanks
+  const allInputs = document.querySelectorAll('input');
+  allInputs.forEach(input => {
+    input.addEventListener('input', () => {
+      previewDOM.innerHTML += `${input.value} ` ?? ` (${wordObj.pos}) `;
+    })
+  });
+}
 /**
  * All your other JavaScript code goes here, inside the function. Don't worry about
  * the `then` and `async` syntax for now.
@@ -98,5 +106,5 @@ function showStory(processedStory){
  */
 getRawStory().then(parseStory).then((processedStory) => {
   showStory(processedStory);
-
+  liveUpdate();
 });
