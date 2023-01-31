@@ -49,7 +49,7 @@ function parseStory(rawStory) {
   const splittedWords = rawStory.split(/([\s,.])/gm)
                               .filter(word => /\S/.test(word)); // to remove leading and trailing space
   splittedWords.forEach(elem => {
-    const posType = elem.match(/\[.*\]/g);
+    const posType = elem.match(/\[[nva]\]/g);
     const wordObj = {};
     if(posType){
       wordObj.word = elem.replace(posType,'');
