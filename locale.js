@@ -1,2 +1,2 @@
-const locale = "en";
+const locale = "en"
 
