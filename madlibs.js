@@ -106,7 +106,7 @@ function liveUpdate() {
  */
 
 // Get the raw story data as a Promise object
-getRawStory()
+getRawStory(locale)
   .then(
     // Once the raw story data is available, parse it
     parseStory
