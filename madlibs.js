@@ -33,7 +33,7 @@ const delimiterDict = {
   comma: ',',
 }
 
-function isDelimiter(char){
+function isDelimiter(char) {
   return char === delimiterDict["dot"] || char === delimiterDict["comma"];
 }
 function parseStory(rawStory) {
@@ -42,7 +42,7 @@ function parseStory(rawStory) {
   // matching pos
   const posDict = {
     '[n]': 'noun',
-    '[v]': 'verb', 
+    '[v]': 'verb',
     '[a]': 'adjective',
   }
   const parsedStory = [];
@@ -50,24 +50,24 @@ function parseStory(rawStory) {
   splittedWords.forEach(elem => {
     const posType = elem.match(/\[[nva]\]/g);
     const wordObj = {};
-    if(posType){
-      wordObj.word = elem.replace(posType,'');
+    if (posType) {
+      wordObj.word = elem.replace(posType, '');
       wordObj.pos = posDict[posType];
     }
-    else wordObj.word = elem; 
+    else wordObj.word = elem;
     parsedStory.push(wordObj);
   });
   return parsedStory
   // return {}; // This line is currently wrong :)
 }
 
-function showStory(processedStory){
+function showStory(processedStory) {
   // Grap DOM elements
   const editDOM = document.querySelector(".madLibsEdit");
   const previewDOM = document.querySelector(".madLibsPreview");
-  
+
   processedStory.forEach((wordObj, index) => {
-    if(wordObj.hasOwnProperty('pos')){
+    if (wordObj.hasOwnProperty('pos')) {
       //? Input For Edit
       const blankEdit = document.createElement('input');
       blankEdit.type = "text";
@@ -80,15 +80,15 @@ function showStory(processedStory){
       blankPrev.innerHTML = `[${wordObj.pos}]`;
       blankPrev.classList.add("prev-blank");
       previewDOM.appendChild(blankPrev);
-      
-    }else{
+
+    } else {
       editDOM.innerHTML += `${wordObj.word}`;
       previewDOM.innerHTML += `${wordObj.word}`;
     }
   });
 }
 
-function liveUpdate(){
+function liveUpdate() {
   //! After parsing, we have list of blanks for edit and preview
   const editBlanks = document.querySelectorAll('.madLibsEdit input');
   const prevBlanks = document.querySelectorAll('.madLibsPreview span');
@@ -111,15 +111,46 @@ getRawStory().then(parseStory).then((processedStory) => {
   liveUpdate();
 });
 
+
 // Start of hotkeys code
-document.addEventListener("keyup", function (event) {
-  if (event.keyCode === 13) {
-    const fields = document.querySelectorAll('.madLibsEdit input');
-    let currentField = event.target;
-    let currentIndex = Array.from(fields).indexOf(currentField);
-    let nextField = fields[currentIndex + 1];
-    if (nextField) {
-      nextField.focus();
+
+// Check if the addEventListener method is supported by the browser
+if (document.addEventListener) {
+  // This event listener listens for the "keyup" event on the document
+  document.addEventListener("keyup", function (event) {
+
+    // Check if the "keyCode" property of the event is equal to 13 (Enter key)
+    if (event.keyCode === 13) {
+
+      // Select all elements with the class "madLibsEdit input" and store them in the "fields" variable
+      const fields = document.querySelectorAll('.madLibsEdit input');
+
+      // If no elements with the class "madLibsEdit input" are found, show an error message and return
+      if (!fields.length) {
+        console.error("No fields found with the class 'madLibsEdit input'");
+        return;
+      }
+
+      // Get the currently focused field by checking the "event.target" property and finding its index in the "fields" array
+      let currentField = event.target;
+      let currentIndex = Array.from(fields).indexOf(currentField);
+
+      // Get the next field in the "fields" array, if there is one
+      let nextField = fields[currentIndex + 1];
+
+      // If a next field exists, set its focus by calling its "focus()" method
+      if (nextField) {
+        nextField.focus();
+      }
+      // If there is no next field, show a message indicating that there are no more fields to focus on
+      else {
+        console.log("No more fields to focus on");
+      }
     }
-  }
-});
+  });
+}
+// If the addEventListener method is not supported by the browser, show an error message
+else {
+  console.error("The 'addEventListener' method is not supported by this browser");
+}
+
