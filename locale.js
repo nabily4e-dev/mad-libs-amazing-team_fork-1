@@ -1,8 +1,4 @@
-const locale = "en";
 let translations = {};
-document.addEventListener("DOMContentLoaded", () => {
-  setLocale(locale);
-});
 async function setLocale() {
   response = await fetch(`/lang/${locale}/details.json`);
   translations = await response.json();
