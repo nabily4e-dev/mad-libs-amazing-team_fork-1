@@ -61,7 +61,7 @@ function parseStory(rawStory) {
 }
 
 function showStory(processedStory) {
-  // Grap DOM elements
+  // Grape DOM elements
   const editDOM = document.querySelector(".madLibsEdit");
   const previewDOM = document.querySelector(".madLibsPreview");
 
