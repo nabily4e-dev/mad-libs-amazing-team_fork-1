@@ -15,7 +15,7 @@ function translatePage(){
     });
 }
 
-const langSwicher = document.querySelector("[data-switcher]");
+const langSwicher = document.querySelector(".lang-switcher");
 langSwicher.addEventListener("change", e => {
     locale = e.target.value;
     setLocale();
