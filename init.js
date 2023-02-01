@@ -1,6 +1,6 @@
-const locale = "en";
+let locale = "en";
 document.addEventListener("DOMContentLoaded", () => {
-    setLocale(locale);
+    setLocale();
     /**
      * All your other JavaScript code goes here, inside the function. Don't worry about
      * the `then` and `async` syntax for now.

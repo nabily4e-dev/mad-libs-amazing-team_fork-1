@@ -65,6 +65,10 @@ function showStory(processedStory) {
   const editDOM = document.querySelector(".madLibsEdit");
   const previewDOM = document.querySelector(".madLibsPreview");
 
+  // Reset two DOM elements
+  editDOM.innerHTML = "";
+  previewDOM.innerHTML = "";
+
   processedStory.forEach((wordObj, index) => {
     if (wordObj.hasOwnProperty("pos")) {
       //? Input For Edit
