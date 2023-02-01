@@ -1,4 +1,4 @@
-const locale = "en";
+const locale = "ar";
 document.addEventListener("DOMContentLoaded", () => {
     setLocale(locale);
     /**
